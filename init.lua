@@ -246,6 +246,12 @@ rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  {
+    'benomahony/uv.nvim',
+    opts = {
+      picker_integration = true,
+    },
+  },
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
@@ -706,19 +712,32 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
+        --INFO: Terraform/HCL
         terraformls = {},
-        rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
+        terraform = {},
 
-        pyright = {},
-        -- TypeScript
+        --INFO: Python
+        pyright = {
+          settings = {
+            pyright = {
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                ignore = { '*' },
+              },
+            },
+          },
+        },
+        ruff = {
+          init_options = {
+            settings = {
+              logLevel = 'debug',
+            },
+          },
+        },
+
+        --INFO: TypeScript
         vtsls = {
           filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
           init_options = {
@@ -731,6 +750,12 @@ require('lazy').setup({
               },
             },
           },
+        },
+        ['vue-language-server'] = {
+          on_init = function(client)
+            vim.notify('Hello from init!', vim.log.levels.ERROR)
+            vim.notify(client, 1)
+          end,
         },
 
         lua_ls = {
@@ -747,12 +772,7 @@ require('lazy').setup({
             },
           },
         },
-        ['vue-language-server'] = {
-          on_init = function(client)
-            vim.notify('Hello from init!', vim.log.levels.ERROR)
-            vim.notify(client, 1)
-          end,
-        },
+
         ['stylua'] = {},
       }
 
@@ -823,6 +843,11 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        python = {
+          'ruff_fix',
+          'ruff_format',
+          'ruff_organize_imports',
+        },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
