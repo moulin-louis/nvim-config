@@ -736,6 +736,9 @@ require('lazy').setup({
         terraformls = {},
         terraform = {},
 
+        --INFO: Nix (Nil)
+        nil_ls = {},
+
         --INFO: Python
         pyright = {
           settings = {
