@@ -27,12 +27,12 @@ vim.cmd("set completeopt+=noselect")
 
 require "mini.pick".setup()
 require "nvim-treesitter.configs".setup({
-	highlight = { enable = true }
+	highlight = { enable = true },
 	auto_install = true,
 })
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.lsp.enable({ "lua_ls" })
+vim.lsp.enable({ "lua_ls", "rust_analyzer"})
 
 vim.cmd(":hi statusline guibg=NONE")
