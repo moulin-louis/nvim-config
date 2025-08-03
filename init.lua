@@ -10,12 +10,7 @@ vim.o.winborder = "rounded"
 vim.o.clipboard = "unnamedplus"
 
 vim.pack.add({
-	{ src = "https://github.com/echasnovski/mini.pick" },
-	{ src = "https://github.com/echasnovski/mini.pairs" },
-	{ src = "https://github.com/echasnovski/mini.completion" },
-	{ src = "https://github.com/echasnovski/mini.notify" },
-	{ src = "https://github.com/echasnovski/mini.icons" },
-	{ src = "https://github.com/echasnovski/mini.extra" },
+	{ src = "https://github.com/echasnovski/mini.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 })
@@ -36,6 +31,8 @@ require "mini.completion".setup()
 require "mini.notify".setup()
 require "mini.icons".setup()
 require "mini.extra".setup()
+require "mini.indentscope".setup()
+require('mini.basics').setup()
 
 require "nvim-treesitter.configs".setup({
 	highlight = { enable = true },
