@@ -12,7 +12,8 @@ vim.o.clipboard = "unnamedplus"
 vim.pack.add({
 	{ src = "https://github.com/echasnovski/mini.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/Saghen/blink.cmp" },
+	{ src = "https://github.com/mason-org/mason.nvim" }
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -32,12 +33,21 @@ require "mini.notify".setup()
 require "mini.icons".setup()
 require "mini.extra".setup()
 require "mini.indentscope".setup()
-require('mini.basics').setup()
+require "mini.basics".setup()
+
+require "blink.cmp".setup({
+	fuzzy = { implementation = 'lua' }
+})
 
 require "nvim-treesitter.configs".setup({
 	highlight = { enable = true },
 	auto_install = true,
 })
+
+local vue_ls_coonfig = {}
+
+
+require "mason".setup()
 
 vim.keymap.set('n', '<leader>pf', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>ph', ":Pick help<CR>")
@@ -45,6 +55,6 @@ vim.keymap.set('n', '<leader>pd', ":Pick diagnostic<CR>")
 
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 
-vim.lsp.enable({ "lua_ls", "rust_analyzer"})
+vim.lsp.enable({ "lua_ls", "rust_analyzer", "vtsls", "vue_ls" })
 
 vim.cmd(":hi statusline guibg=NONE")
