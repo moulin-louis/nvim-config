@@ -59,9 +59,7 @@ require "blink.cmp".setup({
 })
 
 require "mason".setup()
-require('uv').setup({
-	picker_integration = false,
-})
+require 'plugins.python_venv'.setup()
 vim.lsp.enable({ "lua_ls", "rust_analyzer", "vtsls", "vue_ls", "terraformls", "tflint", "pyright", "ruff" })
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 
