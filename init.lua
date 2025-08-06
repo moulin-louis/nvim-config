@@ -1,62 +1,61 @@
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.signcolumn = "yes"
-vim.o.termguicolors = true
-vim.o.wrap = false
-vim.o.tabstop = 2
-vim.o.swapfile = false
-vim.g.mapleader = " "
-vim.o.winborder = "rounded"
-vim.o.clipboard = "unnamedplus"
+vim.opt.winborder = "rounded"
+vim.opt.tabstop = 2
+vim.opt.cursorcolumn = false
+vim.opt.ignorecase = true
+vim.opt.shiftwidth = 2
+vim.opt.smartindent = true
+vim.opt.wrap = false
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.swapfile = false
+vim.opt.termguicolors = true
+vim.opt.undofile = true
+vim.opt.incsearch = true
+vim.opt.signcolumn = "yes"
 
 vim.pack.add({
+	-- Collection of a lot of stuff
 	{ src = "https://github.com/echasnovski/mini.nvim" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	-- LSP completion
 	{ src = "https://github.com/Saghen/blink.cmp" },
+	-- Install LSP
 	{ src = "https://github.com/mason-org/mason.nvim" },
-	{ src = "https://github.com/stevearc/oil.nvim" }
+	-- File Explorer
+	{ src = "https://github.com/stevearc/oil.nvim" },
+	-- Theme
+	{ src = "https://github.com/folke/tokyonight.nvim" },
+	-- gitsigns
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	-- uv support
+	{ src = "https://github.com/benomahony/uv.nvim" },
 })
-
-vim.api.nvim_create_autocmd('LspAttach', {
-	callback = function(ev)
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-		if client:supports_method('textDocument/completion') then
-			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-		end
-	end,
-})
-vim.cmd("set completeopt+=noselect")
 
 require "mini.pick".setup()
 require "mini.pairs".setup()
-require "mini.completion".setup()
 require "mini.notify".setup()
 require "mini.icons".setup()
 require "mini.extra".setup()
 require "mini.indentscope".setup()
 require "mini.basics".setup()
 
+vim.keymap.set('n', '<leader>pf', ":Pick files<CR>")
+vim.keymap.set('n', '<leader>ph', ":Pick help<CR>")
+vim.keymap.set('n', '<leader>pd', ":Pick diagnostic<CR>")
+
 require('oil').setup()
+vim.keymap.set('n', '<leader>e', ":Oil<CR>")
 
 require "blink.cmp".setup({
 	fuzzy = { implementation = 'lua' }
 })
 
-require "nvim-treesitter.configs".setup({
-	highlight = { enable = true },
-	auto_install = true,
-})
-
 require "mason".setup()
-
-vim.keymap.set('n', '<leader>pf', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>ph', ":Pick help<CR>")
-vim.keymap.set('n', '<leader>pd', ":Pick diagnostic<CR>")
-vim.keymap.set('n', '<leader>o', ":Oil <CR>")
-
-
+vim.lsp.enable({ "lua_ls", "rust_analyzer", "vtsls", "vue_ls", "terraformls", "tflint", "pyright", "ruff" })
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 
-vim.lsp.enable({ "lua_ls", "rust_analyzer", "vtsls", "vue_ls" })
+require('gitsigns').setup()
+
+require('tokyonight').setup()
+vim.cmd("colorscheme tokyonight")
 
 vim.cmd(":hi statusline guibg=NONE")

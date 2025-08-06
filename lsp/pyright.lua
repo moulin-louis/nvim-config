@@ -32,11 +32,15 @@ return {
     '.git',
   },
   settings = {
+		pyright = {
+			disableOrganizeImports = true,
+		},
     python = {
       analysis = {
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
         diagnosticMode = 'openFilesOnly',
+				ignore = { '*' },
       },
     },
   },
