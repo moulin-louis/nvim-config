@@ -3,10 +3,6 @@
 -- License: MIT
 -- Based off: https://github.com/benomahony/uv.nvim
 
--- uv.nvim - Neovim plugin for uv Python package management integration
--- Author: Ben O'Mahony
--- License: MIT
-
 local M = {}
 
 -- Virtual environment activation
@@ -16,9 +12,7 @@ function M.activate_venv(venv_path)
 	vim.env.VIRTUAL_ENV = venv_path
 	vim.env.PATH = venv_path .. "/bin:" .. vim.env.PATH
 	-- Notify user
-	if M.config.notify_activate_venv then
-		vim.notify("Activated virtual environment: " .. venv_path, vim.log.levels.INFO)
-	end
+	vim.notify("Activated virtual environment: " .. venv_path, vim.log.levels.INFO)
 end
 
 -- Auto-activate the .venv if it exists at the project root
@@ -28,6 +22,7 @@ function M.auto_activate_venv()
 		M.activate_venv(venv_path)
 		return true
 	end
+	vim.notify("No .venv found ", vim.log.levels.INFO)
 	return false
 end
 
