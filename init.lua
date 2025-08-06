@@ -31,18 +31,27 @@ vim.pack.add({
 })
 
 require "mini.pick".setup()
+vim.keymap.set('n', '<leader>pf', ":Pick files<CR>")
+vim.keymap.set('n', '<leader>ph', ":Pick help<CR>")
+vim.keymap.set('n', '<leader>pd', ":Pick diagnostic<CR>")
 require "mini.pairs".setup()
 require "mini.notify".setup()
+vim.notify = require('mini.notify').make_notify()
 require "mini.icons".setup()
 require "mini.extra".setup()
 require "mini.indentscope".setup()
 require "mini.basics".setup()
 
-vim.keymap.set('n', '<leader>pf', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>ph', ":Pick help<CR>")
-vim.keymap.set('n', '<leader>pd', ":Pick diagnostic<CR>")
-
-require('oil').setup()
+require('oil').setup({
+	columns = {
+		"icon",
+		"size"
+	},
+	watch_for_changes = true,
+	view_options = {
+		show_hidden = true,
+	},
+})
 vim.keymap.set('n', '<leader>e', ":Oil<CR>")
 
 require "blink.cmp".setup({
@@ -50,6 +59,9 @@ require "blink.cmp".setup({
 })
 
 require "mason".setup()
+require('uv').setup({
+	picker_integration = false,
+})
 vim.lsp.enable({ "lua_ls", "rust_analyzer", "vtsls", "vue_ls", "terraformls", "tflint", "pyright", "ruff" })
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 
