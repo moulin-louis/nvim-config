@@ -13,7 +13,8 @@ vim.pack.add({
 	{ src = "https://github.com/echasnovski/mini.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/Saghen/blink.cmp" },
-	{ src = "https://github.com/mason-org/mason.nvim" }
+	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "https://github.com/stevearc/oil.nvim" }
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -35,6 +36,8 @@ require "mini.extra".setup()
 require "mini.indentscope".setup()
 require "mini.basics".setup()
 
+require('oil').setup()
+
 require "blink.cmp".setup({
 	fuzzy = { implementation = 'lua' }
 })
@@ -44,14 +47,13 @@ require "nvim-treesitter.configs".setup({
 	auto_install = true,
 })
 
-local vue_ls_coonfig = {}
-
-
 require "mason".setup()
 
 vim.keymap.set('n', '<leader>pf', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>ph', ":Pick help<CR>")
 vim.keymap.set('n', '<leader>pd', ":Pick diagnostic<CR>")
+vim.keymap.set('n', '<leader>o', ":Oil <CR>")
+
 
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 
