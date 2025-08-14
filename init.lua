@@ -13,6 +13,7 @@ vim.opt.undofile = true
 vim.opt.incsearch = true
 vim.opt.signcolumn = "yes"
 
+
 vim.pack.add({
 	-- Collection of a lot of stuff
 	{ src = "https://github.com/echasnovski/mini.nvim" },
@@ -28,14 +29,11 @@ vim.pack.add({
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	-- Format plugin
 	{ src = "https://github.com/stevearc/conform.nvim" },
-	--syntax highlighting
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	-- fuzzy finder
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim" }
 })
 
-require "mini.pick".setup()
-vim.keymap.set('n', '<leader>pf', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>ph', ":Pick help<CR>")
-vim.keymap.set('n', '<leader>pd', ":Pick diagnostic<CR>")
 require "mini.pairs".setup()
 require "mini.notify".setup()
 vim.notify = require('mini.notify').make_notify()
@@ -43,6 +41,13 @@ require "mini.icons".setup()
 require "mini.extra".setup()
 require "mini.indentscope".setup()
 require "mini.basics".setup()
+
+require('telescope').setup({})
+local tel_builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>sf', tel_builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>sg', tel_builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>sb', tel_builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>sh', tel_builtin.help_tags, { desc = 'Telescope help tags' })
 
 require('oil').setup({
 	columns = {
@@ -58,25 +63,6 @@ vim.keymap.set('n', '<leader>e', ":Oil<CR>")
 
 require "blink.cmp".setup({
 	fuzzy = { implementation = 'lua' }
-})
-
-
-require 'nvim-treesitter.configs'.setup({
-	auto_install = true,
-	highlight = {
-		enable = true,
-		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-		-- Using this option may slow down your editor, and you may see some duplicate highlights.
-		-- Instead of true it can also be a list of languages
-		additional_vim_regex_highlighting = false,
-	},
-	incremental_selection = {
-		enable = false
-	},
-	indent = {
-		enable = false,
-	}
 })
 
 require "mason".setup()
@@ -107,3 +93,5 @@ require('tokyonight').setup()
 vim.cmd("colorscheme tokyonight")
 
 vim.cmd(":hi statusline guibg=NONE")
+
+vim.cmd("syntax on")
