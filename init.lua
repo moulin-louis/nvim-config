@@ -52,41 +52,41 @@ vim.keymap.set('n', '<leader>sb', tel_builtin.buffers, { desc = 'Telescope buffe
 vim.keymap.set('n', '<leader>sh', tel_builtin.help_tags, { desc = 'Telescope help tags' })
 
 require('oil').setup {
-  columns = {
-    'icon',
-    'size',
-  },
-  watch_for_changes = true,
-  view_options = {
-    show_hidden = true,
-  },
+	columns = {
+		'icon',
+		'size',
+	},
+	watch_for_changes = true,
+	view_options = {
+		show_hidden = true,
+	},
 }
 vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 
 require('blink.cmp').setup {
-  fuzzy = { implementation = 'lua' },
+	fuzzy = { implementation = 'lua' },
 }
 require('mason').setup()
 require('plugins.python_venv').setup()
-vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'pyright', 'ruff' }
+vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'basedpyright', 'ruff' }
 
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 require('conform').setup {
-  formatters_by_ft = {
-    lua = { 'stylua', lsp_format = 'fallback' },
-    rust = { 'rustfmt', lsp_format = 'fallback' },
-    python = {
-      'ruff_fix',
-      'ruff_format',
-      'ruff_organize_imports',
-    },
-  },
+	formatters_by_ft = {
+		lua = { 'stylua', lsp_format = 'fallback' },
+		rust = { 'rustfmt', lsp_format = 'fallback' },
+		python = {
+			'ruff_fix',
+			'ruff_format',
+			'ruff_organize_imports',
+		},
+	},
 }
 vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*',
-  callback = function(args)
-    require('conform').format { bufnr = args.buf }
-  end,
+	pattern = '*',
+	callback = function(args)
+		require('conform').format { bufnr = args.buf }
+	end,
 })
 
 require('gitsigns').setup()
