@@ -32,6 +32,8 @@ vim.pack.add {
   -- fuzzy finder
   { src = 'https://github.com/nvim-telescope/telescope.nvim' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
+  -- Syntax hightligtin
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
 }
 
 require('mini.pairs').setup()
@@ -64,10 +66,10 @@ vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 require('blink.cmp').setup {
   fuzzy = { implementation = 'lua' },
 }
-
 require('mason').setup()
 require('plugins.python_venv').setup()
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'pyright', 'ruff' }
+
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 require('conform').setup {
   formatters_by_ft = {
@@ -89,9 +91,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 require('gitsigns').setup()
 
-require('tokyonight').setup()
-vim.cmd 'colorscheme tokyonight'
-
 vim.cmd ':hi statusline guibg=NONE'
 
-vim.cmd 'syntax on'
+require('nvim-treesitter').setup {
+  auto_install = true,
+  highlight = {
+    enable = true,
+  },
+}
