@@ -36,6 +36,7 @@ vim.pack.add {
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
 
   { src = 'https://github.com/folke/todo-comments.nvim' },
+  { src = 'https://github.com/folke/tokyonight.nvim' },
 }
 
 require('todo-comments').setup()
@@ -53,7 +54,7 @@ local tel_builtin = require 'telescope.builtin'
 vim.keymap.set('n', '<leader>sf', tel_builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>sg', tel_builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>sb', tel_builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>sh', tel_builtin.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>sr', tel_builtin.resume, { desc = 'Telescope resume search' })
 
 require('oil').setup {
   columns = {
@@ -93,9 +94,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
-require('gitsigns').setup()
-
-vim.cmd ':hi statusline guibg=NONE'
+require('gitsigns').setup {}
 
 require('nvim-treesitter').setup {
   auto_install = true,
@@ -103,3 +102,7 @@ require('nvim-treesitter').setup {
     enable = true,
   },
 }
+
+require('tokyonight').setup {}
+
+vim.cmd 'colorscheme tokyonight-night'
