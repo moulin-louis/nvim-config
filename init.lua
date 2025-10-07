@@ -37,7 +37,11 @@ vim.pack.add {
 
 	{ src = 'https://github.com/folke/todo-comments.nvim' },
 	{ src = 'https://github.com/folke/tokyonight.nvim' },
+
+	-- Markdown preview
+	{src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"
 }
+	}
 
 require('todo-comments').setup()
 
@@ -102,6 +106,8 @@ require('nvim-treesitter').setup {
 		enable = true,
 	},
 }
+
+require('render-markdown').setup {}
 
 require('tokyonight').setup {}
 
