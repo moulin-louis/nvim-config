@@ -39,9 +39,8 @@ vim.pack.add {
 	{ src = 'https://github.com/folke/tokyonight.nvim' },
 
 	-- Markdown preview
-	{src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }
 }
-	}
 
 require('todo-comments').setup()
 
@@ -58,6 +57,7 @@ local tel_builtin = require 'telescope.builtin'
 vim.keymap.set('n', '<leader>sf', tel_builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>sg', tel_builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>sb', tel_builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>sd', tel_builtin.diagnostics, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>sr', tel_builtin.resume, { desc = 'Telescope resume search' })
 
 require('oil').setup {
@@ -76,7 +76,6 @@ require('blink.cmp').setup {
 	fuzzy = { implementation = 'lua' },
 }
 require('mason').setup()
-require('plugins.python_venv').setup()
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'basedpyright', 'ruff' }
 
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
