@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 vim.opt.winborder = 'rounded'
 vim.opt.tabstop = 2
 vim.opt.cursorcolumn = false
@@ -39,7 +41,10 @@ vim.pack.add {
 	{ src = 'https://github.com/folke/tokyonight.nvim' },
 
 	-- Markdown preview
-	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }
+	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+
+	-- AutoSession
+	{ src = "https://github.com/rmagatti/auto-session" }
 }
 
 require('todo-comments').setup()
@@ -79,6 +84,7 @@ require('mason').setup()
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'basedpyright', 'ruff' }
 
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show diagnostics' })
 require('conform').setup {
 	formatters_by_ft = {
 		lua = { 'stylua', lsp_format = 'fallback' },
@@ -110,4 +116,7 @@ require('render-markdown').setup {}
 
 require('tokyonight').setup {}
 
+require("auto-session").setup({})
+
 vim.cmd 'colorscheme tokyonight-night'
+
