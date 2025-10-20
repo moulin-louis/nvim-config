@@ -1,7 +1,6 @@
 vim.loader.enable()
 
 vim.opt.winborder = 'rounded'
-vim.opt.tabstop = 2
 vim.opt.cursorcolumn = false
 vim.opt.ignorecase = true
 vim.opt.shiftwidth = 2
