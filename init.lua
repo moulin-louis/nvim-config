@@ -42,8 +42,8 @@ vim.pack.add {
 	-- Markdown preview
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 
-	-- AutoSession
-	{ src = "https://github.com/rmagatti/auto-session" }
+	-- Crates Version
+	{ src = "https://github.com/saecki/crates.nvim" }
 }
 
 require('todo-comments').setup()
@@ -115,7 +115,6 @@ require('render-markdown').setup {}
 
 require('tokyonight').setup {}
 
-require("auto-session").setup({})
-
+require('crates').setup {}
 vim.cmd 'colorscheme tokyonight-night'
 

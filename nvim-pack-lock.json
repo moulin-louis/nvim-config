@@ -12,6 +12,10 @@
       "rev": "9d859cb",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "crates.nvim": {
+      "rev": "ac9fa49",
+      "src": "https://github.com/saecki/crates.nvim"
+    },
     "gitsigns.nvim": {
       "rev": "1ee5c1f",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
