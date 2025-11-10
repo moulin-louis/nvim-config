@@ -43,7 +43,10 @@ vim.pack.add {
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 
 	-- Crates Version
-	{ src = "https://github.com/saecki/crates.nvim" }
+	{ src = "https://github.com/saecki/crates.nvim" },
+
+	-- Opencode integration
+	{ src = "https://github.com/NickvanDyke/opencode.nvim"}
 }
 
 require('todo-comments').setup()
@@ -73,6 +76,7 @@ require('oil').setup {
 	view_options = {
 		show_hidden = true,
 	},
+
 }
 vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 
@@ -116,5 +120,9 @@ require('render-markdown').setup {}
 require('tokyonight').setup {}
 
 require('crates').setup {}
+
+--require('opencode.nvim').setup {}
+
+require('opencode').ask()
 vim.cmd 'colorscheme tokyonight-night'
 
