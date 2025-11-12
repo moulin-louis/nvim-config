@@ -15,6 +15,13 @@ vim.opt.incsearch = true
 vim.opt.signcolumn = 'yes'
 vim.opt.clipboard = 'unnamedplus'
 
+-- Enable auto reloading when content change
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  pattern = "*",
+  command = "checktime"
+})
+
 vim.pack.add {
 	-- Collection of a lot of stuff
 	{ src = 'https://github.com/echasnovski/mini.nvim' },
@@ -84,7 +91,7 @@ require('blink.cmp').setup {
 	fuzzy = { implementation = 'lua' },
 }
 require('mason').setup()
-vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'basedpyright', 'ruff' }
+vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'basedpyright', 'ruff', 'jsonls' }
 
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show diagnostics' })
@@ -121,8 +128,5 @@ require('tokyonight').setup {}
 
 require('crates').setup {}
 
---require('opencode.nvim').setup {}
-
-require('opencode').ask()
 vim.cmd 'colorscheme tokyonight-night'
 
