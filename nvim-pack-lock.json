@@ -8,6 +8,10 @@
       "rev": "d918ebd",
       "src": "https://github.com/Saghen/blink.cmp"
     },
+    "bloat.nvim": {
+      "rev": "f90bef655ac40fecbaae53e10db1cf7894d090b1",
+      "src": "https://github.com/dundalek/bloat.nvim"
+    },
     "conform.nvim": {
       "rev": "9d859cb",
       "src": "https://github.com/stevearc/conform.nvim"
