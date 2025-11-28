@@ -18,42 +18,42 @@ vim.opt.clipboard = 'unnamedplus'
 -- Enable auto reloading when content change
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, {
-	pattern = '*',
-	command = 'checktime',
+  pattern = '*',
+  command = 'checktime',
 })
 
 vim.pack.add {
-	-- Collection of a lot of stuff
-	{ src = 'https://github.com/echasnovski/mini.nvim' },
-	-- LSP completion
-	{ src = 'https://github.com/Saghen/blink.cmp' },
-	-- Install LSP
-	{ src = 'https://github.com/mason-org/mason.nvim' },
-	-- File Explorer
-	{ src = 'https://github.com/stevearc/oil.nvim' },
-	-- Theme
-	{ src = 'https://github.com/folke/tokyonight.nvim' },
-	-- gitsigns
-	{ src = 'https://github.com/lewis6991/gitsigns.nvim' },
-	-- Format plugin
-	{ src = 'https://github.com/stevearc/conform.nvim' },
-	-- fuzzy finder
-	{ src = 'https://github.com/nvim-telescope/telescope.nvim' },
-	{ src = 'https://github.com/nvim-lua/plenary.nvim' },
-	-- Syntax hightligtin
-	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
+  -- Collection of a lot of stuff
+  { src = 'https://github.com/echasnovski/mini.nvim' },
+  -- LSP completion
+  { src = 'https://github.com/Saghen/blink.cmp' },
+  -- Install LSP
+  { src = 'https://github.com/mason-org/mason.nvim' },
+  -- File Explorer
+  { src = 'https://github.com/stevearc/oil.nvim' },
+  -- Theme
+  { src = 'https://github.com/folke/tokyonight.nvim' },
+  -- gitsigns
+  { src = 'https://github.com/lewis6991/gitsigns.nvim' },
+  -- Format plugin
+  { src = 'https://github.com/stevearc/conform.nvim' },
+  -- fuzzy finder
+  { src = 'https://github.com/nvim-telescope/telescope.nvim' },
+  { src = 'https://github.com/nvim-lua/plenary.nvim' },
+  -- Syntax hightligtin
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
 
-	{ src = 'https://github.com/folke/todo-comments.nvim' },
-	{ src = 'https://github.com/folke/tokyonight.nvim' },
+  { src = 'https://github.com/folke/todo-comments.nvim' },
+  { src = 'https://github.com/folke/tokyonight.nvim' },
 
-	-- Markdown preview
-	{ src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
+  -- Markdown preview
+  { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
 
-	-- Crates Version
-	{ src = 'https://github.com/saecki/crates.nvim' },
+  -- Crates Version
+  { src = 'https://github.com/saecki/crates.nvim' },
 
-	-- Opencode integration
-	{ src = 'https://github.com/NickvanDyke/opencode.nvim' },
+  -- Opencode integration
+  { src = 'https://github.com/NickvanDyke/opencode.nvim' },
 }
 
 require('todo-comments').setup()
@@ -75,55 +75,54 @@ vim.keymap.set('n', '<leader>sd', tel_builtin.diagnostics, { desc = 'Telescope b
 vim.keymap.set('n', '<leader>sr', tel_builtin.resume, { desc = 'Telescope resume search' })
 
 require('oil').setup {
-	columns = {
-		'icon',
-		'size',
-	},
-	watch_for_changes = true,
-	view_options = {
-		show_hidden = true,
-	},
+  columns = {
+    'icon',
+    'size',
+  },
+  watch_for_changes = true,
+  view_options = {
+    show_hidden = true,
+  },
 }
 vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 
 require('blink.cmp').setup {
-	fuzzy = { implementation = 'lua' },
+  fuzzy = { implementation = 'lua' },
 }
 
 require('mason').setup()
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'basedpyright', 'ruff', 'jsonls' }
 vim.lsp.inlay_hint.enable(true)
 
-
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show diagnostics' })
 require('conform').setup {
-	formatters_by_ft = {
-		lua = { 'stylua', lsp_format = 'fallback' },
-		rust = { 'rustfmt', lsp_format = 'fallback' },
-		python = {
-			'ruff_fix',
-			'ruff_format',
-			'ruff_organize_imports',
-		},
-	},
+  formatters_by_ft = {
+    lua = { 'stylua', lsp_format = 'fallback' },
+    rust = { 'rustfmt', lsp_format = 'fallback' },
+    python = {
+      'ruff_fix',
+      'ruff_format',
+      'ruff_organize_imports',
+    },
+  },
 }
 vim.api.nvim_create_autocmd('BufWritePre', {
-	pattern = '*',
-	callback = function(args)
-		require('conform').format { bufnr = args.buf }
-	end,
+  pattern = '*',
+  callback = function(args)
+    require('conform').format { bufnr = args.buf }
+  end,
 })
 vim.keymap.set('n', '<leader>f', function()
-	require('conform').format()
+  require('conform').format()
 end)
 
 require('gitsigns').setup {}
 
 require('nvim-treesitter').setup {
-	auto_install = true,
-	highlight = {
-		enable = true,
-	},
+  auto_install = true,
+  highlight = {
+    enable = true,
+  },
 }
 
 require('render-markdown').setup {}
