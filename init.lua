@@ -51,9 +51,6 @@ vim.pack.add {
 
   -- Crates Version
   { src = 'https://github.com/saecki/crates.nvim' },
-
-  -- Opencode integration
-  { src = 'https://github.com/NickvanDyke/opencode.nvim' },
 }
 
 require('todo-comments').setup()
