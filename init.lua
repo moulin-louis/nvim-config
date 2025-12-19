@@ -51,6 +51,9 @@ vim.pack.add {
 
   -- Crates Version
   { src = 'https://github.com/saecki/crates.nvim' },
+
+  -- test alternative oil.nvim
+  { src = 'https://github.com/A7Lavinraj/fyler.nvim' },
 }
 
 require('todo-comments').setup()
@@ -83,12 +86,16 @@ require('oil').setup {
 }
 vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 
+require('fyler').setup {}
+local fyler = require 'fyler'
+vim.keymap.set('n', '<leader>g', fyler.open, { desc = 'Open Fyler View' })
+
 require('blink.cmp').setup {
   fuzzy = { implementation = 'lua' },
 }
 
 require('mason').setup()
-vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'basedpyright', 'ruff', 'jsonls' }
+vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'ruff', 'jsonls', 'ty' }
 vim.lsp.inlay_hint.enable(true)
 
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show diagnostics' })

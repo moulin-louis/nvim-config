@@ -20,6 +20,10 @@
       "rev": "ac9fa498a9edb96dc3056724ff69d5f40b898453",
       "src": "https://github.com/saecki/crates.nvim"
     },
+    "fyler.nvim": {
+      "rev": "b8ddeb8fb978f782affa22d993b2b6baef4bc0a5",
+      "src": "https://github.com/A7Lavinraj/fyler.nvim"
+    },
     "gitsigns.nvim": {
       "rev": "1ee5c1fd068c81f9dd06483e639c2aa4587dc197",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
