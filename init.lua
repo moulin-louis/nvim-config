@@ -65,6 +65,7 @@ require('mini.icons').setup()
 require('mini.extra').setup()
 require('mini.indentscope').setup()
 require('mini.basics').setup()
+require('mini.statusline').setup()
 
 require('telescope').setup {}
 local tel_builtin = require 'telescope.builtin'
