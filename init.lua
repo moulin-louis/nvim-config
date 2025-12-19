@@ -41,7 +41,7 @@ vim.pack.add {
   { src = 'https://github.com/nvim-telescope/telescope.nvim' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   -- Syntax hightligtin
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
 
   { src = 'https://github.com/folke/todo-comments.nvim' },
   { src = 'https://github.com/folke/tokyonight.nvim' },
@@ -122,12 +122,12 @@ end)
 
 require('gitsigns').setup {}
 
-require('nvim-treesitter').setup {
-  auto_install = true,
-  highlight = {
-    enable = true,
-  },
-}
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'python' },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
 
 require('render-markdown').setup {}
 
