@@ -90,7 +90,7 @@ require('blink.cmp').setup {
 }
 
 require('mason').setup()
-vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'ruff', 'jsonls', 'ty', 'nil', 'nil_ls' }
+vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'ruff', 'jsonls', 'ty', 'nil_ls' }
 vim.lsp.inlay_hint.enable(true)
 
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show diagnostics' })
