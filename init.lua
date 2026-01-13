@@ -87,9 +87,9 @@ require('oil').setup {
 }
 vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 
-require('fyler').setup {}
-local fyler = require 'fyler'
-vim.keymap.set('n', '<leader>g', fyler.open, { desc = 'Open Fyler View' })
+-- require('fyler').setup {}
+-- local fyler = require 'fyler'
+-- vim.keymap.set('n', '<leader>g', fyler.open, { desc = 'Open Fyler View' })
 
 require('blink.cmp').setup {
   fuzzy = { implementation = 'lua' },
