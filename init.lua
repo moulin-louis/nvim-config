@@ -1,5 +1,8 @@
 vim.loader.enable()
 
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 vim.opt.winborder = 'rounded'
 vim.opt.cursorcolumn = false
 vim.opt.ignorecase = true
@@ -40,20 +43,19 @@ vim.pack.add {
   -- fuzzy finder
   { src = 'https://github.com/nvim-telescope/telescope.nvim' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
-  -- Syntax hightligtin
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
+  -- Syntax highlighting
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+    version = 'main',
+  },
 
   { src = 'https://github.com/folke/todo-comments.nvim' },
-  { src = 'https://github.com/folke/tokyonight.nvim' },
 
   -- Markdown preview
   { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
 
   -- Crates Version
   { src = 'https://github.com/saecki/crates.nvim' },
-
-  -- test alternative oil.nvim
-  { src = 'https://github.com/A7Lavinraj/fyler.nvim' },
 }
 
 require('todo-comments').setup()
@@ -87,19 +89,41 @@ require('oil').setup {
 }
 vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 
--- require('fyler').setup {}
--- local fyler = require 'fyler'
--- vim.keymap.set('n', '<leader>g', fyler.open, { desc = 'Open Fyler View' })
-
 require('blink.cmp').setup {
   fuzzy = { implementation = 'lua' },
 }
 
 require('mason').setup()
-vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'vtsls', 'vue_ls', 'terraformls', 'tflint', 'ruff', 'jsonls', 'ty' }
+vim.lsp.enable {
+  'lua_ls',
+  'rust_analyzer',
+  --INFO: Vue TS
+  'vtsls',
+  'vue_ls',
+  'jsonls',
+  --INFO: Terraform/Terragrunt
+  'terraformls',
+  'tflint',
+  --INFO: Python
+  'ruff',
+  'ty',
+  'nil_ls',
+  'helm_ls',
+  'yamlls',
+  --INFO: Go
+  'gopls',
+  'golangci_lint_ls',
+}
 vim.lsp.inlay_hint.enable(true)
 
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show diagnostics' })
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Diagnostics to quickfix' })
+vim.keymap.set('n', '<leader>cF', function()
+  vim.fn.setreg('+', vim.fn.expand '%:p')
+  print('Copied: ' .. vim.fn.expand '%:p')
+end, { desc = 'Copy absolute file path' })
+
 require('conform').setup {
   formatters_by_ft = {
     lua = { 'stylua', lsp_format = 'fallback' },
@@ -109,22 +133,22 @@ require('conform').setup {
       'ruff_format',
       'ruff_organize_imports',
     },
+    go = { 'goimports', 'gofmt' },
+  },
+  format_on_save = {
+    -- These options will be passed to conform.format()
+    timeout_ms = 500,
+    lsp_format = 'fallback',
   },
 }
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*',
-  callback = function(args)
-    require('conform').format { bufnr = args.buf }
-  end,
-})
-vim.keymap.set('n', '<leader>f', function()
-  require('conform').format()
-end)
 
 require('gitsigns').setup {}
 
+require('nvim-treesitter').setup {
+  install_dir = vim.fn.stdpath 'data' .. '/site',
+}
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'python' },
+  pattern = { 'python', 'rust', 'go', 'lua', 'javascript', 'typescript', 'vue', 'json', 'yaml', 'toml', 'markdown' },
   callback = function()
     vim.treesitter.start()
   end,
