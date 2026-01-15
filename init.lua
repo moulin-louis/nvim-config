@@ -93,7 +93,11 @@ require('blink.cmp').setup {
   fuzzy = { implementation = 'lua' },
 }
 
-require('mason').setup()
+require('mason').setup {
+  pip = {
+    use_uv = true,
+  },
+}
 vim.lsp.enable {
   'lua_ls',
   'rust_analyzer',
@@ -108,7 +112,6 @@ vim.lsp.enable {
   'ruff',
   'ty',
   'nil_ls',
-  'helm_ls',
   'yamlls',
   --INFO: Go
   'gopls',
