@@ -104,8 +104,9 @@ require('mason').setup {
 vim.lsp.enable {
   'lua_ls',
   'rust_analyzer',
-  --INFO: Vue TS
+  --INFO: JS/TSVue TS
   'vtsls',
+  'ts_ls',
   'vue_ls',
   'jsonls',
   --INFO: Terraform/Terragrunt
@@ -120,7 +121,6 @@ vim.lsp.enable {
   'gopls',
   'golangci_lint_ls',
   --INFO: JS/TS linting
-  'eslint',
 }
 vim.lsp.inlay_hint.enable(true)
 
