@@ -56,6 +56,9 @@ vim.pack.add {
 
   -- Crates Version
   { src = 'https://github.com/saecki/crates.nvim' },
+
+  -- test
+  { src = 'https://github.com/neovim/nvim-lspconfig' },
 }
 
 require('todo-comments').setup()
@@ -116,6 +119,8 @@ vim.lsp.enable {
   --INFO: Go
   'gopls',
   'golangci_lint_ls',
+  --INFO: JS/TS linting
+  'eslint',
 }
 vim.lsp.inlay_hint.enable(true)
 
@@ -137,6 +142,16 @@ require('conform').setup {
       'ruff_organize_imports',
     },
     go = { 'goimports', 'gofmt' },
+    javascript = { 'prettier' },
+    typescript = { 'prettier' },
+    javascriptreact = { 'prettier' },
+    typescriptreact = { 'prettier' },
+    vue = { 'prettier' },
+    css = { 'prettier' },
+    html = { 'prettier' },
+    json = { 'prettier' },
+    yaml = { 'prettier' },
+    markdown = { 'prettier' },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
