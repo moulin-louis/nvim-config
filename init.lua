@@ -59,6 +59,7 @@ vim.pack.add {
 
   -- test
   { src = 'https://github.com/neovim/nvim-lspconfig' },
+  -- { src = 'https://github.com/manzanit0/k8s-whisper.nvim' },
 }
 
 require('todo-comments').setup()
@@ -159,6 +160,13 @@ require('conform').setup {
     lsp_format = 'fallback',
   },
 }
+
+-- require('k8s-whisper').setup {
+--   -- This is a GitHub repository
+--   schemas_catalog = 'datreeio/CRDs-catalog',
+--   -- This is a git ref, branch, tag, sha, etc.
+--   schema_catalog_ref = 'main',
+-- }
 
 require('gitsigns').setup {}
 

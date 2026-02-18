@@ -28,6 +28,10 @@
       "rev": "5813e4878748805f1518cee7abb50fd7205a3a48",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "k8s-whisper.nvim": {
+      "rev": "01d08f9296df9890f53adbc45708dce71c978421",
+      "src": "https://github.com/manzanit0/k8s-whisper.nvim"
+    },
     "mason.nvim": {
       "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
       "src": "https://github.com/mason-org/mason.nvim"
