@@ -40,6 +40,10 @@
       "rev": "a995fe9cd4193fb492b5df69175a351a74b3d36b",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
+    "neogit": {
+      "rev": "2b6a9e4dacb435a95eff474c80d0e94ae0e4f909",
+      "src": "https://github.com/NeogitOrg/neogit"
+    },
     "nvim-bacon": {
       "rev": "c9cef8ac576800b6b813ad16be692d141262a4c3",
       "src": "https://github.com/Canop/nvim-bacon"

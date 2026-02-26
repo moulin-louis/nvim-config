@@ -32,6 +32,7 @@ vim.pack.add {
   { src = 'https://github.com/Saghen/blink.cmp' },
   -- Install LSP
   { src = 'https://github.com/mason-org/mason.nvim' },
+  { src = 'https://github.com/neovim/nvim-lspconfig' },
   -- File Explorer
   { src = 'https://github.com/stevearc/oil.nvim' },
   -- Theme
@@ -56,10 +57,6 @@ vim.pack.add {
 
   -- Crates Version
   { src = 'https://github.com/saecki/crates.nvim' },
-
-  -- test
-  { src = 'https://github.com/neovim/nvim-lspconfig' },
-  -- { src = 'https://github.com/manzanit0/k8s-whisper.nvim' },
 }
 
 require('todo-comments').setup()
