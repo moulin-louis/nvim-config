@@ -32,6 +32,7 @@ vim.pack.add {
   { src = 'https://github.com/Saghen/blink.cmp' },
   -- Install LSP
   { src = 'https://github.com/mason-org/mason.nvim' },
+  { src = 'https://github.com/neovim/nvim-lspconfig' },
   -- File Explorer
   { src = 'https://github.com/stevearc/oil.nvim' },
   -- Theme
@@ -101,8 +102,9 @@ require('mason').setup {
 vim.lsp.enable {
   'lua_ls',
   'rust_analyzer',
-  --INFO: Vue TS
+  --INFO: JS/TSVue TS
   'vtsls',
+  'ts_ls',
   'vue_ls',
   'jsonls',
   --INFO: Terraform/Terragrunt
@@ -116,6 +118,7 @@ vim.lsp.enable {
   --INFO: Go
   'gopls',
   'golangci_lint_ls',
+  --INFO: JS/TS linting
 }
 vim.lsp.inlay_hint.enable(true)
 
@@ -137,6 +140,16 @@ require('conform').setup {
       'ruff_organize_imports',
     },
     go = { 'goimports', 'gofmt' },
+    javascript = { 'prettier' },
+    typescript = { 'prettier' },
+    javascriptreact = { 'prettier' },
+    typescriptreact = { 'prettier' },
+    vue = { 'prettier' },
+    css = { 'prettier' },
+    html = { 'prettier' },
+    json = { 'prettier' },
+    yaml = { 'prettier' },
+    markdown = { 'prettier' },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
@@ -144,6 +157,13 @@ require('conform').setup {
     lsp_format = 'fallback',
   },
 }
+
+-- require('k8s-whisper').setup {
+--   -- This is a GitHub repository
+--   schemas_catalog = 'datreeio/CRDs-catalog',
+--   -- This is a git ref, branch, tag, sha, etc.
+--   schema_catalog_ref = 'main',
+-- }
 
 require('gitsigns').setup {}
 

@@ -44,6 +44,10 @@
       "rev": "76eea518e3a34274be08938f38919840c3d19dcb",
       "src": "https://github.com/Canop/nvim-bacon"
     },
+    "nvim-lspconfig": {
+      "rev": "ead0f5f342d8d323441e7d4b88f0fc436a81ad5f",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
     "nvim-treesitter": {
       "rev": "cb2cb74f3c3cbbcc17e79cada2060165d616d849",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
