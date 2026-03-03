@@ -158,13 +158,6 @@ require('conform').setup {
   },
 }
 
--- require('k8s-whisper').setup {
---   -- This is a GitHub repository
---   schemas_catalog = 'datreeio/CRDs-catalog',
---   -- This is a git ref, branch, tag, sha, etc.
---   schema_catalog_ref = 'main',
--- }
-
 require('gitsigns').setup {}
 
 require('nvim-treesitter').setup {

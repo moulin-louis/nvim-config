@@ -1,16 +1,8 @@
 {
   "plugins": {
-    "auto-session": {
-      "rev": "62437532b38495551410b3f377bcf4aaac574ebe",
-      "src": "https://github.com/rmagatti/auto-session"
-    },
     "blink.cmp": {
       "rev": "28badce4a2e919d39a0e2a0b268ec74e68f28396",
       "src": "https://github.com/Saghen/blink.cmp"
-    },
-    "bloat.nvim": {
-      "rev": "f90bef655ac40fecbaae53e10db1cf7894d090b1",
-      "src": "https://github.com/dundalek/bloat.nvim"
     },
     "conform.nvim": {
       "rev": "40dcec5555f960b0a04340d76eabdf4efe78599d",
@@ -20,18 +12,11 @@
       "rev": "ac9fa498a9edb96dc3056724ff69d5f40b898453",
       "src": "https://github.com/saecki/crates.nvim"
     },
-    "fyler.nvim": {
-      "rev": "560c627769faf51bb37ed9414e6a0e869f83dafd",
-      "src": "https://github.com/A7Lavinraj/fyler.nvim"
-    },
     "gitsigns.nvim": {
       "rev": "9f3c6dd7868bcc116e9c1c1929ce063b978fa519",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
-    "helm-ls.nvim": {
-      "rev": "f0b9a1723890971a6d84890b50dbf5f40974ea1b",
-      "src": "https://github.com/qvalentin/helm-ls.nvim"
-    },
+
     "mason.nvim": {
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
@@ -40,10 +25,7 @@
       "rev": "0098de999048af0539183d625c52d733318a441b",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
-    "nvim-bacon": {
-      "rev": "76eea518e3a34274be08938f38919840c3d19dcb",
-      "src": "https://github.com/Canop/nvim-bacon"
-    },
+
     "nvim-lspconfig": {
       "rev": "ead0f5f342d8d323441e7d4b88f0fc436a81ad5f",
       "src": "https://github.com/neovim/nvim-lspconfig"
@@ -57,10 +39,7 @@
       "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
     },
-    "opencode.nvim": {
-      "rev": "68ad02666cf050a79ae16e1b3a4df2766e0c012f",
-      "src": "https://github.com/NickvanDyke/opencode.nvim"
-    },
+
     "plenary.nvim": {
       "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
       "src": "https://github.com/nvim-lua/plenary.nvim"
@@ -80,10 +59,6 @@
     "tokyonight.nvim": {
       "rev": "5da1b76e64daf4c5d410f06bcb6b9cb640da7dfd",
       "src": "https://github.com/folke/tokyonight.nvim"
-    },
-    "vim-helm": {
-      "rev": "2c8525fd98e57472769d137317bca83e477858ce",
-      "src": "https://github.com/towolf/vim-helm"
     }
   }
 }
