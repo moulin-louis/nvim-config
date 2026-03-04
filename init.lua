@@ -57,6 +57,8 @@ vim.pack.add {
 
   -- Crates Version
   { src = 'https://github.com/saecki/crates.nvim' },
+
+  { src = 'https://github.com/kdheepak/lazygit.nvim' },
 }
 
 require('todo-comments').setup()
@@ -77,6 +79,10 @@ vim.keymap.set('n', '<leader>sg', tel_builtin.live_grep, { desc = 'Telescope liv
 vim.keymap.set('n', '<leader>sb', tel_builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>sd', tel_builtin.diagnostics, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>sr', tel_builtin.resume, { desc = 'Telescope resume search' })
+
+require('telescope').load_extension 'lazygit'
+
+vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'LazyGit' })
 
 require('oil').setup {
   columns = {
@@ -125,6 +131,7 @@ vim.lsp.inlay_hint.enable(true)
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show diagnostics' })
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Diagnostics to quickfix' })
+
 vim.keymap.set('n', '<leader>cF', function()
   vim.fn.setreg('+', vim.fn.expand '%:p')
   print('Copied: ' .. vim.fn.expand '%:p')
