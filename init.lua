@@ -4,13 +4,11 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.opt.winborder = 'rounded'
-vim.opt.cursorcolumn = false
 vim.opt.ignorecase = true
 vim.opt.shiftwidth = 2
 vim.opt.smartindent = true
 vim.opt.wrap = true
 vim.opt.number = true
-vim.opt.relativenumber = false
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.undofile = true
@@ -19,7 +17,7 @@ vim.opt.signcolumn = 'yes'
 vim.opt.clipboard = 'unnamedplus'
 
 -- Enable auto reloading when content change
-vim.o.autoread = true
+vim.opt.autoread = true
 vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, {
   pattern = '*',
   command = 'checktime',
@@ -29,6 +27,7 @@ vim.pack.add {
   -- Collection of a lot of stuff
   { src = 'https://github.com/echasnovski/mini.nvim' },
   -- LSP completion
+  { src = 'https://github.com/Saghen/blink.lib' },
   { src = 'https://github.com/Saghen/blink.cmp' },
   -- Install LSP
   { src = 'https://github.com/mason-org/mason.nvim' },
@@ -59,6 +58,7 @@ vim.pack.add {
   { src = 'https://github.com/saecki/crates.nvim' },
 
   { src = 'https://github.com/kdheepak/lazygit.nvim' },
+  { src = 'https://github.com/3rd/image.nvim' },
 }
 
 require('todo-comments').setup()
@@ -77,10 +77,8 @@ local tel_builtin = require 'telescope.builtin'
 vim.keymap.set('n', '<leader>sf', tel_builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>sg', tel_builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>sb', tel_builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>sd', tel_builtin.diagnostics, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>sd', tel_builtin.diagnostics, { desc = 'Telescope diagnostics' })
 vim.keymap.set('n', '<leader>sr', tel_builtin.resume, { desc = 'Telescope resume search' })
-
-require('telescope').load_extension 'lazygit'
 
 vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'LazyGit' })
 
@@ -96,9 +94,9 @@ require('oil').setup {
 }
 vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 
-require('blink.cmp').setup {
-  fuzzy = { implementation = 'lua' },
-}
+local cmp = require 'blink.cmp'
+cmp.build():wait(60000)
+cmp.setup { signature = { enabled = true } }
 
 require('mason').setup {
   pip = {
@@ -110,13 +108,11 @@ vim.lsp.enable {
   'rust_analyzer',
   --INFO: JS/TSVue TS
   'vtsls',
-  'ts_ls',
   'vue_ls',
   'jsonls',
   'oxlint',
   --INFO: Terraform/Terragrunt
-  'terraformls',
-  'tflint',
+  'tofu_ls',
   --INFO: Python
   'ruff',
   'ty',
@@ -158,6 +154,7 @@ require('conform').setup {
     json = { 'prettier' },
     yaml = { 'prettier' },
     markdown = { 'prettier' },
+    xml = { 'xmllint' },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
@@ -171,12 +168,18 @@ require('gitsigns').setup {}
 require('nvim-treesitter').setup {
   install_dir = vim.fn.stdpath 'data' .. '/site',
 }
+
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'python', 'rust', 'go', 'lua', 'javascript', 'typescript', 'vue', 'json', 'yaml', 'toml', 'markdown' },
   callback = function()
-    vim.treesitter.start()
+    pcall(vim.treesitter.start)
   end,
 })
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = { 'python', 'rust', 'go', 'lua', 'javascript', 'typescript', 'vue', 'json', 'yaml', 'toml', 'markdown' },
+--   callback = function()
+--     vim.treesitter.start()
+--   end,
+-- })
 
 require('render-markdown').setup {}
 
@@ -184,3 +187,8 @@ require('crates').setup {}
 
 require('tokyonight').setup {}
 vim.cmd 'colorscheme tokyonight-night'
+
+require('image').setup {
+  backend = 'kitty',
+  processor = 'magick_cli',
+}
